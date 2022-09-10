@@ -13,7 +13,9 @@
         const btn = document.getElementById('btn');
         btn.addEventListener('click', () => {
             Notification.requestPermission().then((result) => {
-                console.log(result);
+                if (result === 'granted') {
+                    Notification.push('Hello World');
+                }
             });
         });
     </script>
