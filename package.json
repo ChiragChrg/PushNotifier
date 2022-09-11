@@ -1,0 +1,20 @@
+{
+  "name": "pushnotifier",
+  "version": "1.0.0",
+  "description": "Just Testing Push Notifications triggered from Backend to Frontend",
+  "main": "sw.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChiragChrg/PushNotifier.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChiragChrg/PushNotifier/issues"
+  },
+  "homepage": "https://github.com/ChiragChrg/PushNotifier#readme"
+}
