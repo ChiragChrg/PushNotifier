@@ -1,16 +1,19 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 const db = require('./db');
-const push = require('web-push');
+
+app.use(express.json());
+app.use(cors());
 
 app.post('/register', (req, res) => {
     const {uName, Email, Role, Password} = req.body;
     let TblName;
-    if(Role === 'Student')TblName = 'pushStudent';
-    else if(Role === 'Faculty')TblName = 'pushFaculty';
-    else if(Role === 'Staff')TblName = 'pushStaff';
+    if(Role === 'student')TblName = 'pushStudent';
+    else if(Role === 'faculty')TblName = 'pushFaculty';
+    else if(Role === 'staff')TblName = 'pushStaff';
 
-    res.send(uName, Email, Role, Password, TblName);
+    // res.send({uName, Email, Role, Password, TblName});
 
     let sql = `insert into ${TblName} (uName, Email, Role, Password) values (?, ?, ?, ?)`;
     // const result = db.execute(sql, [uName, Email, Role, Password]);

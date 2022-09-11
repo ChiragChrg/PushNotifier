@@ -5,9 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Push Notification</title>
-    <script defer src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script defer src="./app.js"></script>
-
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <style>
         form{
             display: flex;
@@ -33,7 +31,7 @@
             text-align: center;
         }
 
-        form input[type="submit"]{
+        form input[type="button"]{
             width: 100px;
             height: 30px;
             background-color: dodgerblue;
@@ -48,7 +46,7 @@
 <body>
     <h1>Push Notification</h1>
     
-    <form onsubmit="registerUser()" method="POST">
+    <form method="post">
         <label for="uName"><p>Name : </p><input type="text" id="uName"></label>
         <label for="email"><p>Email : </p><input type="text" id="email"></label>
         <label for="pass"><p>Password : </p><input type="text" id="pass"></label>
@@ -60,7 +58,18 @@
             </select>
         </label>
 
-        <input type="submit" value="Register">
+        <input type="button" value="Register" onclick="registerUser()">
     </form>
+
+    <script>
+        addEventListener('load', () => {
+            if('serviceWorker' in navigator){
+                navigator.serviceWorker.register('/sw.js')
+                .then(reg => console.log('Service Worker Registered'))
+                .catch(err => console.log('Service Worker Not Registered', err))
+            }
+        });
+    </script>
+    <script async defer src="./app.js"></script>
 </body>
 </html>
