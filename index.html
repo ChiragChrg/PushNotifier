@@ -5,19 +5,62 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Push Notification</title>
+    <script defer src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script defer src="./app.js"></script>
+
+    <style>
+        form{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 1em;
+        }
+        
+        form label p{
+            width: 200px;
+        }
+
+        form label input{
+            width: 200px;
+            height: 30px;
+            text-align: center;
+        }
+        
+        form label select{
+            width: 200px;
+            height: 30px;
+            text-align: center;
+        }
+
+        form input[type="submit"]{
+            width: 100px;
+            height: 30px;
+            background-color: dodgerblue;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-top: 3em;
+        }
+    </style>
 </head>
 <body>
     <h1>Push Notification</h1>
-    <button id="btn">Enable Push Notification</button>
-    <script>
-        const btn = document.getElementById('btn');
-        btn.addEventListener('click', () => {
-            Notification.requestPermission().then((result) => {
-                if (result === 'granted') {
-                    Notification.push('Hello World');
-                }
-            });
-        });
-    </script>
+    
+    <form onsubmit="registerUser()" method="POST">
+        <label for="uName"><p>Name : </p><input type="text" id="uName"></label>
+        <label for="email"><p>Email : </p><input type="text" id="email"></label>
+        <label for="pass"><p>Password : </p><input type="text" id="pass"></label>
+        <label for="role"><p>Role : </p>
+            <select id="role">
+                <option value="student">Student</option>
+                <option value="faculty">Faculty</option>
+                <option value="staff">Staff</option>
+            </select>
+        </label>
+
+        <input type="submit" value="Register">
+    </form>
 </body>
 </html>
