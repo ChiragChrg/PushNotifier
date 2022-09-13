@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Push Notification</title>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="manifest" href="./manifest.json">
+
     <style>
         form{
             display: flex;
@@ -62,12 +64,9 @@
     </form>
 
     <script>
-        addEventListener('load', () => {
-            if('serviceWorker' in navigator){
-                navigator.serviceWorker.register('/sw.js')
-                .then(reg => console.log('Service Worker Registered'))
-                .catch(err => console.log('Service Worker Not Registered', err))
-            }
+        addEventListener('load', async () => {
+            let sw = await navigator.serviceWorker.register('/sw.js');
+            console.log(sw);
         });
     </script>
     <script async defer src="./app.js"></script>

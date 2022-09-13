@@ -10,3 +10,7 @@ push.setVapidDetails(
     vapidKeys.publicKey,
     vapidKeys.privateKey
 )
+
+let sub={"endpoint":"https://fcm.googleapis.com/fcm/send/c9H9sN5smTo:APA91bHoySChnBvwVBeQqEJAvwvKwfaNsBxvQL8uaW50ip03LO1BK-w7G_mz9mdhnbbUdVjdqv_ubgQmF-9fPxXBetmtNjr4CGUNWgAwjqbG0MIP3b91WK1qKax7XXHcdqFWBLy76bJe","expirationTime":null,"keys":{"p256dh":"BHD8y4zAfbtER2z50fRbgLqNWdyfrRxBWTJd93nxNCUCjj1oSk0xg9mNO12V6o3t7hSdSQoEq3y_9u8UqmkMfz0","auth":"wIiJaWTv1vqEsaWhIPfwVA"}}
+
+push.sendNotification(sub, 'test message');

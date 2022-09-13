@@ -10,8 +10,8 @@ const registerUser = async () => {
 
     let sw = await navigator.serviceWorker.ready;
     let sub = await sw.pushManager.subscribe({
-        userVisibleOnly: true,
         applicationServerKey: "BJsSOM9uE_Wu_j-CdJXcRrr96NBmJi2S1b57ZLQuvvBxBMIv5umfLH3U3RoEBXJU_0NXrG1peCeQlpFTG75SBoE"
     })
     console.log(sub);
+    console.log(JSON.stringify(sub));
 };
