@@ -31,7 +31,8 @@ const registerUser = async () => {
     console.log({uName, Email, Role, Password});
 
 
-    const result = await axios.post('http://localhost:8080/register', {uName, Email, Role, Password, sub});
+    const result = await axios.post('https://push-notifier.vercel.app/register', {uName, Email, Role, Password, sub});
+    // const result = await axios.post('http://localhost:8080/register', {uName, Email, Role, Password, sub});
     console.log(result.data);
 };
 
