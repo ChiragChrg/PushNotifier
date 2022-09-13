@@ -6,8 +6,10 @@ const webpush = require('web-push');
 
 const app = express();
 app.use(express.json());
-app.use(cors());
 app.use(bodyParser.json());
+app.use(
+    cors({origin: ['http://localhost:8080', 'https://push-notifier.vercel.app/']})
+  );
 
 const vapidKeys = {
     publicKey: 'BJsSOM9uE_Wu_j-CdJXcRrr96NBmJi2S1b57ZLQuvvBxBMIv5umfLH3U3RoEBXJU_0NXrG1peCeQlpFTG75SBoE',
