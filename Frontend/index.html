@@ -54,21 +54,21 @@
         <label for="pass"><p>Password : </p><input type="text" id="pass"></label>
         <label for="role"><p>Role : </p>
             <select id="role">
-                <option value="student">Student</option>
-                <option value="faculty">Faculty</option>
-                <option value="staff">Staff</option>
+                <option value="Student">Student</option>
+                <option value="Faculty">Faculty</option>
+                <option value="Staff">Staff</option>
             </select>
         </label>
 
         <input type="button" value="Register" onclick="registerUser()">
     </form>
 
-    <script>
+    <!-- <script>
         addEventListener('load', async () => {
             let sw = await navigator.serviceWorker.register('/sw.js');
             console.log(sw);
         });
-    </script>
+    </script> -->
     <script async defer src="./app.js"></script>
 </body>
 </html>

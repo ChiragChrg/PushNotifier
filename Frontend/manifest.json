@@ -4,14 +4,12 @@
     "theme_color": "#2196f3",
     "background_color": "#2196f3",
     "display": "standalone",
-    "scope": "/",
-    "start_url": "/",
-    "gcm_sender_id": "692089820290",
     "icons": [
         {
             "src": "./AOT.png",
             "sizes": "144x144",
             "type": "image/png"
         }
-    ]
+    ],
+    "start_url": "."
   }
