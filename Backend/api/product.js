@@ -1,14 +1,14 @@
 const express = require('express');
-const cors = require('cors');
+// const cors = require('cors');
 const db = require('../db');
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
 const webpush = require('web-push');
-// const router = express.Router();
+const router = express.Router();
 
-const app = express();
-app.use(express.json());
-app.use(bodyParser.json()); 
-app.use(cors());
+// const app = express();
+// app.use(express.json());
+// app.use(bodyParser.json()); 
+// app.use(cors());
 
 const vapidKeys = {
     publicKey: 'BJsSOM9uE_Wu_j-CdJXcRrr96NBmJi2S1b57ZLQuvvBxBMIv5umfLH3U3RoEBXJU_0NXrG1peCeQlpFTG75SBoE',
@@ -55,7 +55,7 @@ router.get('/register', async (req, res) => {
     }
 });
 
-// module.exports = router;
+module.exports = router;
 
-const PORT = process.env.PORT||8080;
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+// const PORT = process.env.PORT||8080;
+// app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

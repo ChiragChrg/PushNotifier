@@ -1,6 +1,10 @@
 const pubKey = 'BJsSOM9uE_Wu_j-CdJXcRrr96NBmJi2S1b57ZLQuvvBxBMIv5umfLH3U3RoEBXJU_0NXrG1peCeQlpFTG75SBoE';
 let subscription;
 
+axios.headers = {
+    'Access-Control-Allow-Origin': '*',
+}
+
 if('serviceWorker' in navigator) {
     const sendNotif = async () => {
         const register = await navigator.serviceWorker.register('./sw.js', {scope: '.'});
@@ -29,10 +33,8 @@ const registerUser = async () => {
     const Role = document.getElementById('role').value;
     const sub = subscription;
     console.log({uName, Email, Role, Password});
-
-
-    const result = await axios.post('https://push-notifier.vercel.app/register', {uName, Email, Role, Password, sub});
-    // const result = await axios.post('http://localhost:8080/register', {uName, Email, Role, Password, sub});
+    // const result = await axios.post('https://push-notifier.vercel.app/register', {uName, Email, Role, Password, sub});
+    const result = await axios.post('http://localhost:8080/register', {uName, Email, Role, Password, sub});
     console.log(result.data);
 };
 
