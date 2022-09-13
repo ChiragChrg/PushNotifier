@@ -33,8 +33,8 @@ const registerUser = async () => {
     const Role = document.getElementById('role').value;
     const sub = subscription;
     console.log({uName, Email, Role, Password});
-    // const result = await axios.post('https://push-notifier.vercel.app/register', {uName, Email, Role, Password, sub});
-    const result = await axios.post('http://localhost:8080/register', {uName, Email, Role, Password, sub});
+    const result = await axios.post('https://pushnotifier.onrender.com/register', {uName, Email, Role, Password, sub});
+    // const result = await axios.post('http://localhost:8080/register', {uName, Email, Role, Password, sub});
     console.log(result.data);
 };
 
