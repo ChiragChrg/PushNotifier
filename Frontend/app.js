@@ -1,4 +1,5 @@
 const pubKey = 'BJsSOM9uE_Wu_j-CdJXcRrr96NBmJi2S1b57ZLQuvvBxBMIv5umfLH3U3RoEBXJU_0NXrG1peCeQlpFTG75SBoE';
+const Log = document.getElementById('log');
 let subscription;
 
 axios.headers = {
@@ -7,12 +8,15 @@ axios.headers = {
 
 if('serviceWorker' in navigator) {
     const sendNotif = async () => {
-        const register = await navigator.serviceWorker.register('./sw.js', {scope: '.'});
-    
+        Log.innerHTML += '<p>Registering Service Worker...</p>';
+        
+        const register = await navigator.serviceWorker.register('./sw.js');
+
         subscription = await register.pushManager.subscribe({
             userVisibleOnly: true,
             applicationServerKey: urlBase64ToUint8Array(pubKey)
         });
+        Log.innerHTML += '<p>Service Worker Registered.</p>';
     
         // const result = await fetch('http://localhost:8080/subscribe', {
         //     method: 'POST',
@@ -23,7 +27,10 @@ if('serviceWorker' in navigator) {
         // });
     }
 
-    sendNotif().catch(err => console.error(err));
+    sendNotif().catch(err => {
+        console.error(err)
+        window.location.reload();
+    });
 }
 
 const registerUser = async () => {
@@ -32,10 +39,19 @@ const registerUser = async () => {
     const Password = document.getElementById('pass').value;
     const Role = document.getElementById('role').value;
     const sub = subscription;
+
+    Log.innerHTML += `<p>Registering new ${Role}...</p>`;
+    Log.innerHTML += `<p>Subscribing to Push Notification...</p>`;
     console.log({uName, Email, Role, Password});
-    const result = await axios.post('https://pushnotifier.onrender.com/register', {uName, Email, Role, Password, sub});
-    // const result = await axios.post('http://localhost:8080/register', {uName, Email, Role, Password, sub});
-    console.log(result.data);
+
+    try{
+        // const result = await axios.post('https://pushnotifier.onrender.com/register', {uName, Email, Role, Password, sub});
+        const result = await axios.post('http://localhost:8080/register', {uName, Email, Role, Password, sub});
+        console.log(result.data);
+        Log.innerHTML += `<p>${Role} Registered.</p>`;
+    } catch(err) {
+            console.log(err);
+    }
 };
 
 //urlbase64ToUint8Array

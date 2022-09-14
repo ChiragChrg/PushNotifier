@@ -9,6 +9,14 @@
     <link rel="manifest" href="./manifest.json">
 
     <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5em;
+            height: 100vh;
+        }
+
         form{
             display: flex;
             justify-content: center;
@@ -43,12 +51,19 @@
             cursor: pointer;
             margin-top: 3em;
         }
+
+        #log{
+            width: 600px;
+            height: 500px;
+            background-color: rgb(230, 230, 230);
+            text-align: center;
+        }
     </style>
 </head>
 <body>
-    <h1>Push Notification</h1>
     
     <form method="post">
+        <h1>Push Notification</h1>
         <label for="uName"><p>Name : </p><input type="text" id="uName"></label>
         <label for="email"><p>Email : </p><input type="text" id="email"></label>
         <label for="pass"><p>Password : </p><input type="text" id="pass"></label>
@@ -62,6 +77,10 @@
 
         <input type="button" value="Register" onclick="registerUser()">
     </form>
+
+    <div id="log">
+
+    </div>
 
     <!-- <script>
         addEventListener('load', async () => {

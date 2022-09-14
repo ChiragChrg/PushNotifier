@@ -28,14 +28,30 @@ app.post('/register', async (req, res) => {
     else if(Role === 'Faculty')TblName = 'pushFaculty';
     else if(Role === 'Staff')TblName = 'pushStaff';
 
-    try{
-        let sql = `insert into ${TblName} (uName, Email, Role, Password) values (?, ?, ?, ?)`;
-        const result = await db.execute(sql, [uName, Email, Role, Password]);
-        console.log(result);
-        res.send({uName, Email, Role, Password, TblName});
+    let notifTo = "pushStaff"; //Staff recieves all notifications   
 
-        const payload = JSON.stringify({ title: 'Srinivas Exam Manager', body: `New ${Role} has Registered!` });
-        webpush.sendNotification(sub, payload).catch(err => console.error(err));
+    try{
+        let sql = `insert into ${TblName} (uName, Email, Role, Password, subscription) values (?, ?, ?, ?, ?)`;
+        const result = await db.execute(sql, [uName, Email, Role, Password, sub]);
+        console.log(result);
+        // res.send({uName, Email, Role, Password, TblName, sub});
+
+        let sql2 = `select subscription from ${notifTo}`;
+        const [result2] = await db.execute(sql2);
+        // console.log(result2);  
+        
+        // ONly for Multiple Staff
+        for(let i = 0; i < result2.length; i++) {
+            let sub = result2[i].subscription;
+            const payload = JSON.stringify({ title: 'Srinivas Exam Manager', body: `New ${Role} has Registered!` });
+            webpush.sendNotification(sub, payload).catch(err => console.error(err));
+        }
+        
+        // ONly for Individual Registered user
+        // const payload = JSON.stringify({ title: 'Srinivas Exam Manager', body: `New ${Role} has Registered!` });
+        // webpush.sendNotification(sub, payload).catch(err => console.error(err));
+        
+        res.sendStatus(201);
     } catch(err) {
         console.log(err);
         res.send(err);
