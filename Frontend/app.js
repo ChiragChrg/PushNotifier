@@ -45,8 +45,8 @@ const registerUser = async () => {
     console.log({uName, Email, Role, Password});
 
     try{
-        // const result = await axios.post('https://pushnotifier.onrender.com/register', {uName, Email, Role, Password, sub});
-        const result = await axios.post('http://localhost:8080/register', {uName, Email, Role, Password, sub});
+        const result = await axios.post('https://pushnotifier.onrender.com/register', {uName, Email, Role, Password, sub});
+        // const result = await axios.post('http://localhost:8080/register', {uName, Email, Role, Password, sub});
         console.log(result.data);
         Log.innerHTML += `<p>${Role} Registered.</p>`;
     } catch(err) {
